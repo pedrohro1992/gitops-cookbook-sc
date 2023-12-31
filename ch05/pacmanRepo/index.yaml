@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  pacman:
+  - apiVersion: v2
+    appVersion: 1.1.0
+    created: "2023-12-31T00:58:33.674668181-03:00"
+    description: A helm chart for Pacman
+    digest: 2ee03af3f6755626945dc346c12fb2eb057e7cfa945403f35e5f645f9dab5683
+    name: pacman
+    type: application
+    urls:
+    - pacman-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-12-31T00:58:33.674424542-03:00"
