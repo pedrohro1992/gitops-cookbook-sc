@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pacman-configmap
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: pacman-kikd
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: pacman-kikd
+    spec:
+      containers:
+        - name: container
+          image: lordofthejars/pacman-kikd:1.0.0
+          volumeMounts:
+            - name: config
+              mountPath: /config
+      volumes:
+        - name: pacman-configmap
+          configMap:
+            name: pacman-configmap

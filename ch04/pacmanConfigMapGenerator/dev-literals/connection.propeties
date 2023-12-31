@@ -1,0 +1,3 @@
+db-timeout=200
+db-username=Ada
+db-url=prod:4321/db
