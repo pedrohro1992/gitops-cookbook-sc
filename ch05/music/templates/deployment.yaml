@@ -11,7 +11,7 @@ spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ .Chart.Name}}
+      app.kubernetes.io/name: {{ Chart.Name }}
   template:
     metadata:
       labels:
