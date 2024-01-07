@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-bgd
+  namespace: bgd
+spec:
+  rules:
+    - host: bgd.homelab.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: bgd
+                port:
+                  number: 8080
+            pathType: Prefix
+            path: /
