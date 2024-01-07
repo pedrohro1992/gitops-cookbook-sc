@@ -1,20 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bgd-app
+  name: bgdk-app
   namespace: argocd
 spec:
   destination:
-    namespace: bgd
+    namespace: bgdk
     server: https://kubernetes.default.svc
   project: default
   source:
+    path: ch07/manifests/bgdk/bgdk
     repoURL: https://github.com/pedrohro1992/gitops-cookbook-sc.git
-    path: ch07/manifests/bgd
     targetRevision: main
   syncPolicy:
-    automated:
-      # Enable Automatic prune
-      prune: true
-      # selfHeal enables the automated correction of dfrits beteween the manifests and the workloads running on kubernetes cluster
-      selfHeal: true
+    automated: {}
+  directory:
+    recurse: true
