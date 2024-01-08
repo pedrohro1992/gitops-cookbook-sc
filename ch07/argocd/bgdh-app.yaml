@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bgdh-app
+  namespace: argocd
+spec:
+  destination:
+    namespace: bgdh
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://github.com/pedrohro1992/gitops-cookbook-sc.git
+    path: ch07/manifests/bgdh
+    targetRevision: main
+    # Argocd cann pass parameters to helm working as the same of the --set parameters of the helm cli or the values.yaml file
+    helm:
+      parameters:
+        - name: app
+          value: $ARGOCD_APP_NAME
+  syncPolicy:
+    automated: {}
