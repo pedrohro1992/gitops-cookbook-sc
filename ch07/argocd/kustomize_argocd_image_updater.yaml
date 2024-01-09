@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pacman-kikd-app
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: myalias=opedroramos/pacman
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
+    argocd-image-updater.argoproj.io/git-branch: main
+spec:
+  destination:
+    namespace: pacman
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kustomize/overlays/prod
+    repoURL: https://github.com/pedrohro1992/pacman-kikd.git
+    targetRevision: main
+  syncPolicy:
+    automated: {}
+  # directory:
+  #   recurse: true
