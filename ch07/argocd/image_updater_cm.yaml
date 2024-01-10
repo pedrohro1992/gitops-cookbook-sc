@@ -1,0 +1,13 @@
+apiVersion: v1
+#DEFINE SECRET SECRET WITH CREDENTIALS AND CONFIGMAP TO AUTHENTICATE WITH DOCKERHUB AND SEE IF ARE ANY UPDATES ON THE IMAGES
+kind: ConfigMap
+metadata:
+  name: argocd-image-updater-config
+data:
+  registries.conf: |
+    registries:
+      - name: Docker Hub
+        api_url: https://docker.io
+        prefix: docker.io
+        insecure: yes
+        credentials: pullsecret:argocd/dockerhub

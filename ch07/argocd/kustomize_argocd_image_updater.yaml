@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: pacman-kikd-app
+  name: pythonapp
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: myalias=opedroramos/pacman
+    argocd-image-updater.argoproj.io/image-list: myalias=opedroramos/pythonapp
     argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
     argocd-image-updater.argoproj.io/git-branch: main
 spec:
@@ -14,7 +14,7 @@ spec:
   project: default
   source:
     path: kustomize/overlays/prod
-    repoURL: https://github.com/pedrohro1992/pacman-kikd.git
+    repoURL: https://github.com/pedrohro1992/minimal-app.git
     targetRevision: main
   syncPolicy:
     automated: {}

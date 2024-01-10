@@ -1,0 +1,13 @@
+apiVersion: v1
+# Configmap that argo uses to create commit messages and users
+kind: ConfigMap
+metadata:
+  name: argocd-image-updater-config
+data:
+  git.user: Pedro
+  git.email: opedroramos.oliveira@gmail.com
+  git.commit-message-template: |
+    build: automatic update off {{ .AppName }}
+
+    {{ range.Appchanges -}}
+    update image {{ .Image }} tag '{{ .OldTag }}' to '{{}}'
