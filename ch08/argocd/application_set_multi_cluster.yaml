@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: bgd-app
+  namespace: argocd
+spec:
+  generators: #Defines a generator
+    - list:
+        elements: #Sets the value of the parameters
+          - cluster: staging
+            url: https://kubernetes.default.svc
+            location: default
+          - cluster: prod
+            url: https://kubernetes.default.svc
+            location: app
+  template: # Defines the Application resource as a template
+    metadata:
+      name: "{{cluster}}-app" #cluster placeholder
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/gitops-cookbook/gitops-cookbook-sc.git
+        targetRevision: main
+        path: ch08/bgd-gen/{{cluster}}
+      destination:
+        server: "{{url}}" #url placeholder
+        namespace: "{{location}}"
+      syncPolicy:
+        syncOptions:
+          - CreateNamespce=true
